@@ -1,0 +1,104 @@
+mql5
+//+------------------------------------------------------------------+
+//|                                           Smart Market Structure Concepts MT5 |
+//|                                                          forexroboteasy.com |
+//|                                                      Forex Robot Easy Team |
+//+------------------------------------------------------------------+
+
+//+------------------------------------------------------------------+
+//|                                                      Global Variables |
+//+------------------------------------------------------------------+
+double currentPrice;
+double previousPrice;
+double threshold;
+bool isInternalBos;
+bool isSwingBos;
+bool isChoCh;
+
+//+------------------------------------------------------------------+
+//|                                                 Custom Indicator Functions |
+//+------------------------------------------------------------------+
+// Function to calculate internal BOS
+bool CalculateInternalBos(double currentPrice, double previousPrice, double threshold)
+{
+    // Add calculation logic here
+    if(currentPrice > previousPrice + threshold)
+        return true;
+    else
+        return false;
+}
+
+// Function to calculate swing BOS
+bool CalculateSwingBos(double currentPrice, double previousPrice, double threshold)
+{
+    // Add calculation logic here
+    if(currentPrice > previousPrice + threshold)
+        return true;
+    else
+        return false;
+}
+
+// Function to calculate CHoCH
+bool CalculateChoCh(double currentPrice, double previousPrice, double threshold)
+{
+    // Add calculation logic here
+    if(currentPrice > previousPrice + threshold)
+        return true;
+    else
+        return false;
+}
+
+//+------------------------------------------------------------------+
+//|                                                 Market Structure Functions |
+//+------------------------------------------------------------------+
+// Function to identify and display internal BOS
+void DisplayInternalBos()
+{
+    if(isInternalBos)
+    {
+        // Add code to display internal BOS on the chart
+        Comment('Internal BOS detected');
+    }
+}
+
+// Function to identify and display swing BOS
+void DisplaySwingBos()
+{
+    if(isSwingBos)
+    {
+        // Add code to display swing BOS on the chart
+        Comment('Swing BOS detected');
+    }
+}
+
+// Function to identify and display CHoCH
+void DisplayChoCh()
+{
+    if(isChoCh)
+    {
+        // Add code to display CHoCH on the chart
+        Comment('CHoCH detected');
+    }
+}
+
+//+------------------------------------------------------------------+
+//|                                          Initialization and Main Program |
+//+------------------------------------------------------------------+
+void OnStart()
+{
+    // Initialize global variables
+    currentPrice = MarketInfo(Symbol(), MODE_CLOSE);
+    previousPrice = currentPrice;
+    threshold = 0.001;
+
+    // Calculate market structure
+    isInternalBos = CalculateInternalBos(currentPrice, previousPrice, threshold);
+    isSwingBos = CalculateSwingBos(currentPrice, previousPrice, threshold);
+    isChoCh = CalculateChoCh(currentPrice, previousPrice, threshold);
+
+    // Display market structure
+    DisplayInternalBos();
+    DisplaySwingBos();
+    DisplayChoCh();
+}
+
